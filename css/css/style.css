@@ -1,0 +1,33 @@
+.flex-container {
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    height: 30vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+}
+
+.item-box {
+    border-style: solid;
+    border-width: 2px;
+    padding: 16px;
+    margin: 8px;
+}
+  
+.blue {
+    border-color: blue;
+    padding: 24px;
+    flex-grow: 2;
+}
+
+.red {
+    border-color: red;
+    flex-grow: 1;
+}
+
+.yellow {
+    border-color: yellow;
+    flex-grow: 1;
+}
