@@ -1,0 +1,21 @@
+<!-- uncomment to apply ngClass and ngStyle
+<div class="stock-container">
+    <div class="name">
+        <h3>{{stock.name}}</h3> - <h4>({{stock.code}})</h4>
+    </div>
+    <!- - <div class="price" [ngClass]="stockClasses">{{stock.price | currency}}</div> - ->
+    <div class="price" [ngStyle]="stockStyles">{{stock.price | currency}}</div>
+    <button *ngIf="!stock.favorite; else message" (click)="toggleFavorite($event)" [disabled]="stock.favorite">Add to
+        Favorite</button>
+    <ng-template #message>In favorites</ng-template>
+</div> -->
+
+<div class="stock-container" *ngFor="let stock of stocks; index as i">
+    <div class="name">
+        <h3>{{stock.name}}</h3> - <h4>({{stock.code}})</h4>
+    </div>
+    <div class="price" [class]="stock.isPositiveChange() ? 'positive' : 'negative'">{{stock.price | currency}}</div>
+    <button *ngIf="!stock.favorite; else message" (click)="toggleFavoriteFor($event, i)" [disabled]="stock.favorite">Add to
+        Favorite</button>
+    <ng-template #message>In favorites</ng-template>
+</div>
