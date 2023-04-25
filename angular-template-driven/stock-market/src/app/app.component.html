@@ -1,0 +1,14 @@
+<div>
+  <h1>
+  Welcome to {{ title }}!
+  </h1>
+  <app-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)">
+    <button>First stock</button>
+  </app-stock-item>
+
+  <app-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)">
+    Second stock
+  </app-stock-item>
+  
+  <app-create-stock></app-create-stock>
+</div>
