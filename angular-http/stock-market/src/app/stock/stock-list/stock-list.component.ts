@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Observable, share, startWith, Subject, switchMap } from 'rxjs';
 import { Stock } from 'src/app/model/stock';
 import { AuthService } from 'src/app/services/auth.service';
 import { StockService } from 'src/app/services/stock.service';
@@ -16,6 +16,7 @@ export class StockListComponent {
 
   ngOnInit() {
     this.fetchStocks();
+    //this.fetchStocksQuery();
   }
 
   fetchStocks() {
@@ -34,9 +35,29 @@ export class StockListComponent {
   }
 
   makeFailingCall() {
-    this.stockService.makeFailingCall().subscribe(
-      (res) => console.log('Successfully made failing call', res),
-      (err) => console.error('Error making failing call', err));
+    this.stockService.makeFailingCall().subscribe({
+      next: (res) => console.log('Successfully made failing call', res),
+      error: (err) => console.error('Error making failing call', err)
+    });
   }
+
+  // public searchString: string = '';
+  // private searchTerms: Subject<string> = new Subject();
+
+  // fetchStocksQuery() {
+  //   this.searchTerms.pipe(
+  //     startWith(this.searchString),
+  //     debounceTime(500),
+  //     distinctUntilChanged(),
+  //     switchMap((query) => this.stockService.getStocksQuery(query)),
+  //     share()
+  //   ).subscribe((stocks: Stock[]) => {
+  //     this.stocks = stocks;
+  //   });;
+  // }
+
+  // search() {
+  //   this.searchTerms.next(this.searchString);
+  // }
 
 }
