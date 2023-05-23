@@ -1,0 +1,11 @@
+.links {
+    margin-bottom: 20px;
+}
+
+.links a {
+    padding: 10px;
+}
+
+.links a.active {
+    background-color: grey;
+}
