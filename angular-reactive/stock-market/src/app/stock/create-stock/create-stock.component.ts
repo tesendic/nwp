@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Stock } from 'src/app/model/stock';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Stock } from '../../model/stock';
+import { JsonPipe } from '@angular/common';
 
 let counter = 1;
 
 @Component({
   selector: 'app-create-stock',
+  imports: [ReactiveFormsModule, JsonPipe],
   templateUrl: './create-stock.component.html',
   styleUrls: ['./create-stock.component.css']
 })

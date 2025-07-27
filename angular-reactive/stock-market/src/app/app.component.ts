@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { Stock } from './model/stock';
+import { StockItemComponent } from './stock/stock-item/stock-item.component';
+import { CreateStockComponent } from './stock/create-stock/create-stock.component';
+
 
 @Component({
   selector: 'app-root',
+  imports: [StockItemComponent, CreateStockComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

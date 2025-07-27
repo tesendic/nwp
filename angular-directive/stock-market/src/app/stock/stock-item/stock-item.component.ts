@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Stock } from 'src/app/model/stock';
+import { Stock } from '../../model/stock';
+import { CommonModule, CurrencyPipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-stock-item',
+  imports: [CurrencyPipe, CommonModule],
   templateUrl: './stock-item.component.html',
   styleUrls: ['./stock-item.component.css']
 })

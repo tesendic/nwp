@@ -1,4 +1,7 @@
-<h3 *ngIf="message">{{message}}</h3>
+@if (message) {
+  <h3>{{message}}</h3>
+}
+
 <div class="form-group">
   <form (ngSubmit)="login()">
     <div class="user-name">
@@ -8,7 +11,9 @@
              name="username"
              #usernameField="ngModel"
              [(ngModel)]="username">
-      <div *ngIf="usernameField.errors?.['required']">Username is Mandatory</div>
+      @if (usernameField.errors?.['required']) {
+        <div>Username is Mandatory</div>
+      }
     </div>
     <div class="password">
       <input type="password"
@@ -17,7 +22,9 @@
              name="password"
              #passwordField="ngModel"
              [(ngModel)]="password">
-      <div *ngIf="passwordField.errors?.['required']">Password is Mandatory</div>
+      @if (passwordField.errors?.['required']) {
+        <div>Password is Mandatory</div>
+      }
     </div>
     <button type="submit">Login</button>
   </form>

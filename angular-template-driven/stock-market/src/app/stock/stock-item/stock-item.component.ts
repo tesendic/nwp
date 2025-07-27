@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Stock } from 'src/app/model/stock';
+import { Stock } from '../../model/stock';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-stock-item',
+  imports: [CurrencyPipe],
   templateUrl: './stock-item.component.html',
   styleUrls: ['./stock-item.component.css']
 })

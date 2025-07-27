@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { Stock } from 'src/app/model/stock';
-import { StockService } from 'src/app/services/stock.service';
+import { Stock } from '../../model/stock';
+import { StockService } from '../../services/stock.service';
+import { StockItemComponent } from '../stock-item/stock-item.component';
 
 @Component({
   selector: 'app-stock-list',
+  imports: [StockItemComponent],
   templateUrl: './stock-list.component.html',
   styleUrls: ['./stock-list.component.css']
 })

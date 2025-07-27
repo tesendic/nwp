@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, signal, WritableSignal } from '@angular/core';
 import { debounceTime, distinctUntilChanged, Observable, share, startWith, Subject, switchMap } from 'rxjs';
-import { Stock } from 'src/app/model/stock';
-import { AuthService } from 'src/app/services/auth.service';
-import { StockService } from 'src/app/services/stock.service';
+import { Stock } from '../../model/stock';
+import { AuthService } from '../../services/auth.service';
+import { StockService } from '../../services/stock.service';
+import { StockItemComponent } from '../stock-item/stock-item.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-stock-list',
+  imports: [StockItemComponent, FormsModule],
   templateUrl: './stock-list.component.html',
   styleUrls: ['./stock-list.component.css']
 })
 export class StockListComponent {
 
-  public stocks: Stock[] = [];
+  public stocks: WritableSignal<Stock[]> = signal([]);
   constructor(private stockService: StockService, private authService: AuthService) { }
 
   ngOnInit() {
@@ -21,8 +24,8 @@ export class StockListComponent {
 
   fetchStocks() {
     this.stockService.getStocks()
-      .subscribe(stocks => {
-        this.stocks = stocks;
+      .subscribe((stocks: Stock[]) => {
+        this.stocks.set(stocks)
       });
   }
 
@@ -36,8 +39,8 @@ export class StockListComponent {
 
   makeFailingCall() {
     this.stockService.makeFailingCall().subscribe({
-      next: (res) => console.log('Successfully made failing call', res),
-      error: (err) => console.error('Error making failing call', err)
+      next: (res: any) => console.log('Successfully made failing call', res),
+      error: (err: any) => console.error('Error making failing call', err)
     });
   }
 
@@ -52,7 +55,7 @@ export class StockListComponent {
   //     switchMap((query) => this.stockService.getStocksQuery(query)),
   //     share()
   //   ).subscribe((stocks: Stock[]) => {
-  //     this.stocks = stocks;
+  //     this.stocks.set(stocks);
   //   });;
   // }
 

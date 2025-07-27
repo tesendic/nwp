@@ -7,26 +7,37 @@
             <input type="text" placeholder="Stock Name" required name="stockName" #stockName="ngModel"
                 [(ngModel)]="stock.name">
         </div>
-        <div *ngIf="stockName.errors?.['required']">Stock Name is Mandatory</div>
+        @if (stockName.errors?.['required']) {
+            <div>Stock Name is Mandatory</div>
+        }
         <div class="stock-code">
             <input type="text" placeholder="Stock Code" required minlength="2" name="stockCode" #stockCode="ngModel"
                 [(ngModel)]="stock.code">
         </div>
-        <div *ngIf="stockCode.dirty && stockCode.invalid">
-            <div *ngIf="stockCode.errors?.['required']">Stock Code is Mandatory</div>
-            <div *ngIf="stockCode.errors?.['minlength']">Stock Code must be atleast of length 2</div>
-        </div>
+        @if (stockCode.dirty && stockCode.invalid) {
+            @if (stockCode.errors?.['required']) {
+              <div>Stock Code is Mandatory</div>
+            }
+            @if (stockCode.errors?.['minlength']) {
+              <div>Stock Code must be atleast of length 2</div>
+            }
+        }
         <div class="stock-price">
             <input type="number" placeholder="Stock Price" name="stockPrice" required #stockPrice="ngModel"
                 [ngModel]="stock.price" (ngModelChange)="setStockPrice($event)">
         </div>
-        <div *ngIf="stockPrice.dirty && stockPrice.invalid">
-            <div *ngIf="stockPrice.errors?.['required']">Stock Price is Mandatory</div>
-        </div>
+        @if (stockPrice.dirty && stockPrice.invalid) {
+            @if (stockPrice.errors?.['required']) {
+              <div>Stock Price is Mandatory</div>
+            }
+        }
+
         <div class="stock-exchange">
             <div>
                 <select name="stockExchange" [(ngModel)]="stock.exchange">
-                    <option *ngFor="let exchange of exchanges" [ngValue]="exchange">{{exchange}}</option>
+                    @for (exchange of exchanges; track exchange) {
+                        <option [ngValue]="exchange">{{exchange}}</option>
+                    }
                 </select>
             </div>
         </div>

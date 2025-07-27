@@ -1,11 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Stock } from 'src/app/model/stock';
-import { StockService } from 'src/app/services/stock.service';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Stock } from '../../model/stock';
+import { StockService } from '../../services/stock.service';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-stock',
+  imports: [FormsModule, JsonPipe],
   templateUrl: './create-stock.component.html',
   styleUrls: ['./create-stock.component.css']
 })

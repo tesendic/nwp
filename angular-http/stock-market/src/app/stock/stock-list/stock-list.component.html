@@ -2,8 +2,9 @@
     <input name="searchBox" [(ngModel)]="searchString" placeholder="Search Here" (keyup)="search()">
 </div> -->
 
-<app-stock-item *ngFor="let stock of stocks" [stock]="stock">
-</app-stock-item>
+@for (stock of stocks(); track stock.code) {
+    <app-stock-item [stock]="stock"></app-stock-item>
+}
 
 <div>
     <button type="button" (click)="fetchStocks()">

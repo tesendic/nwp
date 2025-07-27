@@ -1,9 +1,11 @@
 import { Component, Input} from '@angular/core';
-import { Stock } from 'src/app/model/stock';
-import { StockService } from 'src/app/services/stock.service';
+import { Stock } from '../../model/stock';
+import { StockService } from '../../services/stock.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-stock-item',
+  imports: [RouterModule],
   templateUrl: './stock-item.component.html',
   styleUrls: ['./stock-item.component.css']
 })

@@ -1,14 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Stock } from 'src/app/model/stock';
-import { MessageService } from 'src/app/services/message.service';
-import { StockService } from 'src/app/services/stock.service';
-
-let counter = 1;
+import { FormsModule, NgForm } from '@angular/forms';
+import { Stock } from '../../model/stock';
+import { MessageService } from '../../services/message.service';
+import { StockService } from '../../services/stock.service';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-stock',
+  imports: [FormsModule, JsonPipe],
   templateUrl: './create-stock.component.html',
   styleUrls: ['./create-stock.component.css'],
   providers: [MessageService]
