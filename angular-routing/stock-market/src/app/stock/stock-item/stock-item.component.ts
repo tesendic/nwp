@@ -1,6 +1,5 @@
-import { Component, Input} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { Stock } from '../../model/stock';
-import { StockService } from '../../services/stock.service';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -11,19 +10,13 @@ import { RouterModule } from '@angular/router';
 })
 export class StockItemComponent {
   @Input() public stock: Stock | undefined;
+  @Output() private toggleFavorite: EventEmitter<Stock> = new EventEmitter<Stock>();
 
-  constructor(private stockService: StockService) { }
+  constructor() { }
 
   onToggleFavorite(event: any) {
-    if (this.stock) {
-      this.stockService.toggleFavorite(this.stock)
-        .subscribe(
-          (stock) => {
-            if (this.stock) {
-              this.stock.favorite = !this.stock.favorite
-            }
-          })
-    };
+    event.stopPropagation();    //stop propagation of event because of routerLink in parent element
+    this.toggleFavorite.emit(this.stock);
   }
 
 }

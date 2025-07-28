@@ -1,6 +1,5 @@
-import { ChangeDetectorRef, Component, Input} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { Stock } from '../../model/stock';
-import { StockService } from '../../services/stock.service';
 import { CurrencyPipe } from '@angular/common';
 
 @Component({
@@ -11,21 +10,12 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class StockItemComponent {
   @Input() public stock: Stock | undefined;
+  @Output() private toggleFavorite: EventEmitter<Stock> = new EventEmitter<Stock>();
 
-  constructor(private stockService: StockService, private cdr: ChangeDetectorRef) { }
+  constructor() { }
 
   onToggleFavorite(event: any) {
-    if (this.stock) {
-      this.stockService.toggleFavorite(this.stock)
-        .subscribe(
-          (stock) => {
-            if (this.stock) {
-              this.stock.favorite = !this.stock.favorite
-              //this.stock = {...this.stock}
-              //this.cdr.detectChanges();
-            }
-          })
-    };
+    this.toggleFavorite.emit(this.stock);
   }
 
 }

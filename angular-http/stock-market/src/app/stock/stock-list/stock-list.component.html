@@ -2,8 +2,10 @@
     <input name="searchBox" [(ngModel)]="searchString" placeholder="Search Here" (keyup)="search()">
 </div> -->
 
+
+<p>Signal implementation</p>
 @for (stock of stocks(); track stock.code) {
-    <app-stock-item [stock]="stock"></app-stock-item>
+    <app-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)"></app-stock-item>
 }
 
 <div>
@@ -20,3 +22,15 @@
         Reset Auth Token
     </button>
 </div>
+
+<p>Async pipe implementation</p>
+
+@for (stock of stocks$ | async; track stock.code) {
+    <app-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)"></app-stock-item>
+}
+
+<p>ChangeDetectior implementation</p>
+
+@for (stock of stocks3; track stock.code) {
+    <app-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)"></app-stock-item>
+}

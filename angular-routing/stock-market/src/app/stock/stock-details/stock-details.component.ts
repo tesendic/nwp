@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Stock } from '../../model/stock';
 import { StockService } from '../../services/stock.service';
@@ -12,12 +12,15 @@ export class StockDetailsComponent {
 
   public stock: Stock | undefined;
   constructor(private stockService: StockService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     const stockCode = this.route.snapshot.paramMap.get('code');
     if (stockCode != null) {
-      this.stockService.getStock(stockCode).subscribe(stock => this.stock = stock);
+      this.stockService.getStock(stockCode).subscribe(stock => {
+        this.stock = stock
+        this.cdr.detectChanges()
+      });
     }
   }
 }

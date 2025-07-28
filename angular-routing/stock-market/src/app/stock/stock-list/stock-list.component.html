@@ -3,5 +3,5 @@
 </div> -->
 
 @for (stock of stocks; track stock.code) {
-    <app-stock-item [stock]="stock"></app-stock-item>
+    <app-stock-item [stock]="stock" (toggleFavorite)="onToggleFavorite($event)"></app-stock-item>
 }
