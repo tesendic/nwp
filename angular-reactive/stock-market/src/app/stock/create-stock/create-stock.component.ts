@@ -14,6 +14,7 @@ let counter = 1;
 export class CreateStockComponent {
   private stock: Stock;
   public stockForm: FormGroup = new FormGroup({});
+  
   constructor(private fb: FormBuilder) {
     this.createForm();
     this.stock = new Stock('Test ' + counter++, 'TST', 20, 10);

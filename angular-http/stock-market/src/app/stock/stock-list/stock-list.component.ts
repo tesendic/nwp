@@ -88,7 +88,7 @@ export class StockListComponent {
             //update data for async pipe version to trigger changes of the view
             this.stocks$ = of(this.stocks2)
 
-            //changeDetector version requre exlicit call of the function to trigger changes
+            //changeDetector version requre explicit call of the function to trigger changes
             //this.cdr.detectChanges()
         })
   }
